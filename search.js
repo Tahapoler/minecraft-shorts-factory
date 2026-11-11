@@ -20,13 +20,19 @@ async function main() {
       const videos = await aparat.video.search(keyword);
 
       for (const video of videos || []) {
-        if (!video.hash_id) continue;
+        if (!video.hash_id || !video.title) continue;
+
+        const duration = Number(video.duration);
+
+        if (!Number.isFinite(duration) || duration <= 0 || duration > 180) {
+          continue;
+        }
 
         allVideos.set(video.hash_id, {
           id: video.hash_id,
           title: video.title,
           url: video.url,
-          duration: video.duration,
+          duration,
           views: video.views,
           uploader: video.uploader?.name || "Unknown"
         });
@@ -45,7 +51,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(`Total unique videos: ${results.length}`);
+  console.log(`Videos under 3 minutes: ${results.length}`);
 }
 
 main().catch(error => {
