@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "search": "node search.js"
+    "search": "node search.js",
+    "upload": "node upload.js"
   },
   "dependencies": {
-    "aparat.js": "latest"
+    "aparat.js": "latest",
+    "aparat-api": "latest"
   }
 }
