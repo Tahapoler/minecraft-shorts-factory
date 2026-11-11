@@ -1,0 +1,14 @@
+
+name: Minecraft Shorts Factory
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start cloud runner
+        run: echo "Minecraft Shorts Factory is running!"
