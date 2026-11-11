@@ -19,11 +19,19 @@ const keywords = [
   "ماینکرافت هیروبراین",
   "ماینکرافت روستایی",
   "ماینکرافت ماینینگ",
-  "ماینکرافت ماینکرفت",
   "Minecraft"
 ];
 
 async function main() {
+  let history = [];
+
+  try {
+    history = JSON.parse(fs.readFileSync("history.json", "utf8"));
+  } catch {
+    history = [];
+  }
+
+  const postedIds = new Set(history);
   const allVideos = new Map();
 
   for (const keyword of keywords) {
@@ -40,7 +48,8 @@ async function main() {
         if (
           !Number.isFinite(duration) ||
           duration <= 0 ||
-          duration > 180
+          duration > 180 ||
+          postedIds.has(video.hash_id)
         ) {
           continue;
         }
@@ -60,7 +69,7 @@ async function main() {
     }
   }
 
-  const results = [...allVideos.values()];
+  const results = [...allVideos.values()].slice(0, 10);
 
   fs.writeFileSync(
     "results.json",
@@ -68,7 +77,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(`Total unique videos under 3 minutes: ${results.length}`);
+  console.log(`New candidate videos: ${results.length}`);
 }
 
 main().catch(error => {
