@@ -7,7 +7,20 @@ const aparat = new Aparat();
 const keywords = [
   "ماینکرافت",
   "چالش ماینکرافت",
-  "اتفاقات عجیب ماینکرافت"
+  "اتفاقات عجیب ماینکرافت",
+  "ماینکرافت خنده دار",
+  "ماینکرافت ترسناک",
+  "ماینکرافت زامبی",
+  "ماینکرافت بقا",
+  "ماینکرافت ماب ها",
+  "ماینکرافت ترفند",
+  "ماینکرافت رازها",
+  "ماینکرافت بدوارز",
+  "ماینکرافت هیروبراین",
+  "ماینکرافت روستایی",
+  "ماینکرافت ماینینگ",
+  "ماینکرافت ماینکرفت",
+  "Minecraft"
 ];
 
 async function main() {
@@ -24,7 +37,11 @@ async function main() {
 
         const duration = Number(video.duration);
 
-        if (!Number.isFinite(duration) || duration <= 0 || duration > 180) {
+        if (
+          !Number.isFinite(duration) ||
+          duration <= 0 ||
+          duration > 180
+        ) {
           continue;
         }
 
@@ -51,7 +68,7 @@ async function main() {
     "utf8"
   );
 
-  console.log(`Videos under 3 minutes: ${results.length}`);
+  console.log(`Total unique videos under 3 minutes: ${results.length}`);
 }
 
 main().catch(error => {
