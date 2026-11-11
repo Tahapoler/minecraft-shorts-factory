@@ -1,0 +1,12 @@
+
+{
+  "name": "minecraft-shorts-factory",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "search": "node search.js"
+  },
+  "dependencies": {
+    "aparat.js": "latest"
+  }
+}
